@@ -1097,3 +1097,39 @@ class SortingUtilityTest {
     }
 }
 ```
+ - How can I change the array in this driver class `SortingDriver` so that the numbers are already sorted?
+
+Response:
+```
+Integer[] arr = IntStream.range(0, 10000)
+        .boxed()
+        .toArray(Integer[]::new);
+"Gnome Sort and Cocktail Shaker should both complete near-instantly — Gnome walks forward without a single backtrack, Cocktail exits after one forward pass with no swaps. You should see times close to 0 ms for both."
+```
+ - How can I change the array in this driver class `SortingDriver` so that the numbers are in reverse order and need to be sorted?
+
+Response:
+```
+Integer[] arr = IntStream.range(0, 10000)
+        .map(i -> 9999 - i)
+        .boxed()
+        .toArray(Integer[]::new);
+"This is the worst case for all three. Gnome Sort has to drag every element all the way back to position 0. Cocktail Shaker must do full passes in both directions every cycle. Compare these times directly against Pattern 1 to see the worst-case penalty."
+```
+ - How can I change the array in this driver class `SortingDriver` so that the numbers are mostly sorted?
+
+Response:
+```
+Integer[] arr = IntStream.range(0, 10000)
+        .boxed()
+        .toArray(Integer[]::new);
+
+// Introduce ~100 random adjacent swaps (√n ≈ 100 for n=10000)
+for (int i = 0; i < 100; i++) {
+    int idx = (int) (Math.random() * 9999);
+    Integer tmp = arr[idx];
+    arr[idx]     = arr[idx + 1];
+    arr[idx + 1] = tmp;
+}
+"This tests Cocktail Shaker's early-exit break. With only ~100 elements out of place, both algorithms should exit far earlier than on random input, but Cocktail Shaker's backward pass resolves displaced elements faster than Gnome's backtracking."
+```

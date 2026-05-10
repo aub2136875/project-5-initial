@@ -6,20 +6,6 @@
 
 ##### AI Sorting Method Implementation:
  - After asking the AI to generate the sorting algorithm implementation for Gnome Sort the code compiled fine
-```
-   First 10 of Array...
-1: 6
-2: 15
-3: 20
-4: 21
-5: 23
-6: 26
-7: 29
-8: 31
-9: 32
-10: 38
-Time elapsed: 247.0761 ms
-   ```
 
 # Part B: Cocktail Shaker Sort
 Pseudocode Review:
